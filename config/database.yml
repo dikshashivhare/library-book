@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
+  timeout: 5000
+  # adapter: postgresql
+  username: postgres
+  password: postgres
+  host: localhost
+  min_messages: warning
+development:
+  <<: *default
+  database: library-book-development
+test:
+  <<: *default
+  database: library-book-test
+production:
+  <<: *default
+  database: library-book-production
